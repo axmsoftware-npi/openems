@@ -581,6 +581,23 @@
     "loggedIn": "Angemeldet.",
     "loggedInAs": "Angemeldet als Benutzer '{{ value }}'."
   },
+  "Register": {
+    "Form": {
+      "contactDetails": "Contact Details",
+      "firstname": "First name",
+      "lastname" : "Last name",
+      "street": "Street",
+      "zip": "Zip code",
+      "city": "City",
+      "country": "Country",
+      "email": "Email",
+      "phone": "Phone number"
+    }, 
+    "Edit": {
+      "modify": "bearbeiten",
+      "reset": "zurücksetzen"
+    }
+  },
   "Role": {
     "guest": "Gast",
     "owner": "Eigentümer",

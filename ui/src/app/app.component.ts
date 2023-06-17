@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private checkForUpdateService: CheckForUpdateService
   ) {
-    service.setLang(Language.getByKey(localStorage.LANGUAGE) ?? Language.getByBrowserLang(navigator.language));
+    service.setLang(Language.getByKey(localStorage.LANGUAGE) ?? Language.getByKey(Language.getBrowserLang()));
     checkForUpdateService.init();
 
     this.service.metadata.pipe(filter(metadata => !!metadata)).subscribe(metadata => {

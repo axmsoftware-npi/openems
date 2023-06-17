@@ -6,13 +6,14 @@
     "faq": "Frequently asked questions (FAQ)",
     "language": "Select language:",
     "openEMS": "More about OpenEMS",
-    "patchnotes": "Changes in the monitoring for this build"
+    "patchnotes": "Changes in the monitoring for this build",
+    "contact": "Contact"
   },
   "Edge": {
     "Index": {
       "EmergencyReserve": {
         "InfoForEmergencyReserveSlider": "By activating the emergency power reserve, the value can be freely selected between 5% and 100%.",
-        "emergencyReserve": "Emergencyreserve"
+        "emergencyReserve": "Emergency reserve"
       },
       "Energymonitor": {
         "activePower": "Active power",
@@ -25,12 +26,12 @@
         "storageDischarge": "Storage-Discharge",
         "title": "Energy monitor",
         "ERROR_TEMPORARY": "Error while fetching data. Please try again later.",
-        "ERROR_TOO_LONG": "The display of the data is partly not possible due to reconstruction work on our servers. Your data for this period is not lost. Alternatively, it is still possible to view the historical data via <a href='https://docs.fenecon.de/de/_/latest/fems/ui/introduction.html#_offlinelokal' target='_blank'>local monitoring</a>. We ask for your understanding."
+        "ERROR_TOO_LONG": "The display of the data is partly not possible due to reconstruction work on our servers. Your data for this period is not lost. Alternatively, it is possible to view the historical data via <a href='https://docs.fenecon.de/de/_/latest/fems/ui/introduction.html#_offlinelokal' target='_blank'>local monitoring</a>. We ask for your understanding."
       },
       "Widgets": {
-        "autarchyInfo": "Autarky indicates the percentage of current power that can be covered by generation and storage discharge.",
+        "autarchyInfo": "Autarky indicates the percentage of current power use that can be covered by generation and storage discharge.",
         "phasesInfo": "For technical reasons, the sum of the individual phases can be slightly different from the total sum.",
-        "selfconsumptionInfo": "Self-consumption indicates the percentage of the currently generated output that can be used by direct consumption and storage charging.",
+        "selfconsumptionInfo": "Self-consumption indicates the percentage of the currently generated output that can be used for direct consumption and storage charging.",
         "twoWayInfoGrid": "Negative values correspond to grid feed-in, Positive values correspond to mains supply",
         "InfoStorageForCharge": "Negative values correspond to storage charging",
         "InfoStorageForDischarge": "Positive values correspond to storage discharge",
@@ -42,8 +43,8 @@
           "behaviour": "Behaviour",
           "below": "Below",
           "currentValue": "Current value",
-          "dependendOn": "Dependend on",
-          "minSwitchingTime": "Minimum swichting time",
+          "dependendOn": "Dependent on",
+          "minSwitchingTime": "Minimum switching time",
           "moreThanMaxPower": "Value must not be lower than the maximum power of the controlled device",
           "other": "Other",
           "relationError": "Threshold must be greater than the switched load power",
@@ -60,7 +61,7 @@
           "relationError": "Charge limit must be greater than the Discharge limit"
         },
         "Peakshaving": {
-          "asymmetricInfo": "The entered performance values ​​refer to individual phases. It is adjusted to the most stressed phase.",
+          "asymmetricInfo": "The entered performance values refer to individual phases. It is adjusted to the most stressed phase.",
           "endDate": "End date",
           "endTime": "End time",
           "mostStressedPhase": "Most stressed phase",
@@ -71,7 +72,7 @@
           "relationError": "Discharge limit must be greater than or equal to the charge limit",
           "startDate": "Start date",
           "startTime": "Start time",
-          "startTimeCharge": "Charge Start time"
+          "startTimeCharge": "Charge start time"
         },
         "GridOptimizedCharge": {
           "chargingDelayed": "Charging delayed",
@@ -97,18 +98,18 @@
           "RiskDescription": {
             "Low": {
               "functionDescription": "Comparatively early charging of the storage system",
-              "storageDescription": "Higher chance that the storage system will be fully charged",
-              "pvCurtail": "Lower probability that curtailment of the PV system will be avoided"
+              "storageDescription": "Highest chance that the storage system will be fully charged",
+              "pvCurtail": "Higher probability of PV system curtailment"
             },
             "Medium": {
               "functionDescription": "Comparatively even charging of the store system",
               "storageDescription": "High probability that the storage system will be fully charged",
-              "pvCurtail": "High probability that the curtailment of the PV system will be avoided"
+              "pvCurtail": "Low probability of PV system curtailment"
             },
             "High": {
               "functionDescription": "Comparatively later charging of the storage system",
-              "storageDescription": "Less probability that the storage system will be fully charged",
-              "pvCurtail": "Higher probability that the curtailment of the PV system will be avoided"
+              "storageDescription": "Lower probability that the storage system will be fully charged",
+              "pvCurtail": "Lowest probability of PV system curtailment"
             }
           },
           "riskPropensity": "Risk propensity",
@@ -117,14 +118,14 @@
             "avoidLowCharging": "Low charging avoided",
             "chargeLimitActive": "Charge limit active",
             "endTimeNotCalculated": "End time not calculated",
-            "gridFeedInLimitationIsAvoided": "Grid-Feed-in limitation is avoided",
+            "gridFeedInLimitationIsAvoided": "Grid Feed-in limitation is avoided",
             "noLimitActive": "No charge limit active",
             "noLimitPossible": "No limitation possible (restricted by controls with higher priority)",
             "notDefined": "Not defined",
             "passedEndTime": "End time of limited charging exceeded",
             "storageAlreadyFull": "Storage already full"
           },
-          "storageCapacity": "Storagecapacity (only visible for admin)"
+          "storageCapacity": "Storage capacity (only visible for admin)"
         },
         "CHP": {
           "highThreshold": "High Threshold",
@@ -139,16 +140,16 @@
           "chargeLimitReached": "Charge limit reached",
           "chargeMode": "Charge Mode",
           "chargeTarget": "Charge target",
-          "charging": "Is charing",
+          "charging": "Is charging",
           "chargingLimit": "Charging limit",
-          "chargingPower": "Charing power",
+          "chargingPower": "Charging power",
           "chargingStation": "Charging Station",
           "chargingStationCluster": "Charging station cluster",
           "chargingStationDeactivated": "Charging station deactivated",
-          "chargingStationPluggedIn": "Charing Station plugged in",
-          "chargingStationPluggedInEV": "Charing Station + E-Vehicel plugged in",
-          "chargingStationPluggedInEVLocked": "Charing Station + E-Vehicel plugged in + locked",
-          "chargingStationPluggedInLocked": "Charing Station plugged in + locked",
+          "chargingStationPluggedIn": "Charging Station plugged in",
+          "chargingStationPluggedInEV": "Charging Station + E-Vehicle plugged in",
+          "chargingStationPluggedInEVLocked": "Charging Station + E-Vehicle plugged in + locked",
+          "chargingStationPluggedInLocked": "Charging Station plugged in + locked",
           "clusterConfigError": "An error has occurred in the configuration of the Evcs cluster",
           "currentCharge": "Current charge",
           "energySinceBeginning": "Energy since the last charge start",
@@ -165,7 +166,7 @@
           "starting": "Starting",
           "status": "Status",
           "totalCharge": "Total charge",
-          "totalChargingPower": "Total chargingpower",
+          "totalChargingPower": "Total charging power",
           "unknown": "Unknown",
           "unplugged": "Unplugged",
           "Administration": {
@@ -182,7 +183,7 @@
             "info": "In this mode, the load of the car is adjusted to the current production and consumption.",
             "minChargePower": "Loading rate",
             "minCharging": "Guarantee minimum charge",
-            "minInfo": "If you want to prevent that the car is not charging at the night, you could set a minimum charge.",
+            "minInfo": "If you want to ensure that the car is charging at night, you could set a minimum charge.",
             "name": "Optimized charging",
             "shortName": "Automatically",
             "ChargingPriority": {
@@ -192,7 +193,7 @@
             }
           },
           "ForceChargeMode": {
-            "info": "In this mode the loading of the car is enforced, i.e. it is always guaranteed that the car will be charged, even if the charging station needs to access grid power.",
+            "info": "In this mode the charging of the car is enforced, i.e. it is always guaranteed that the car will be charged, even if the charging station needs to access grid power.",
             "maxCharging": "Maximum charging power",
             "maxChargingDetails": "If the car can not load the entered maximum value, the power will be automatically limited.",
             "name": "Force charging",
@@ -202,7 +203,7 @@
         "Heatingelement": {
           "activeForced": "Active (Minimum runtime)",
           "activeLevel": "Active level",
-          "endtime": "Endtime",
+          "endtime": "End time",
           "energy": "Energy",
           "guaranteeMinimumHeating": "Guarantee minimum heating",
           "heatingelement": "Heating element",
@@ -210,7 +211,7 @@
           "minimumRunTime": "Minimum runtime",
           "priority": "Priority",
           "time": "Time",
-          "timeCountdown": "time until start"
+          "timeCountdown": "Time until start"
         },
         "HeatPump": {
           "aboveSoc": "and from the state of charge of",
@@ -311,7 +312,7 @@
         "log": "Log",
         "manualControl": "Manual control",
         "renameComponents": "Rename components",
-        "scheduler": "Applicationplanner",
+        "scheduler": "Application planner",
         "simulator": "Simulator",
         "systemExecute": "Execute system command",
         "systemProfile": "System Profile",
@@ -425,8 +426,8 @@
       "mandatoryFields": "Please fill the mandatory fields",
       "successUpdate": "Successfully updated network configuration for",
       "errorUpdating": "Error updating",
-      "ipAddress": "IP-Adresse",
-      "subnetmask": "Subnetmask",
+      "ipAddress": "IP-Addresses",
+      "subnetmask": "Subnet mask",
       "addIP": "Add static IP addresses",
       "validAddressWarning": "In 'Add static IP addresses', Please enter valid ip address with subnetmask e.g. 10.4.1.6/24",
       "advancedMode": "Advanced Mode",
@@ -438,7 +439,7 @@
     "active": "Active",
     "actualPower": "e-car Charge power",
     "apply": "Apply",
-    "autarchy": "Autarchy",
+    "autarchy": "Autarky",
     "automatic": "Automatically",
     "cancel": "cancel",
     "capacity": "Capacity",
@@ -545,7 +546,7 @@
     "deviceOffline": "The device is not connected!",
     "isOffline": "OpenEMS is offline!",
     "loggedInAs": "Logged in as:",
-    "toEnergymonitor": "To Energymonitor...",
+    "toEnergymonitor": "To Energy monitor...",
     "type": "Type",
     "OFFLINE_SINCE": "Offline since",
     "ADD_EDGE": "Add new {{ edgeShortName }}",
@@ -580,11 +581,23 @@
     "closed": "Connection closed.",
     "failed": "Connection failed.",
     "loggedIn": "Logged in.",
-    "loggedInAs": "Logged in as '{{ value }}'."
+    "loggedInAs": "Logged in as '{{ value }}'"
   },
   "Register": {
     "Form": {
-      "firstname": "First name"
+      "contactDetails": "Contact Details",
+      "firstname": "First name",
+      "lastname" : "Last name",
+      "street": "Street address",
+      "zip": "Zip code",
+      "city": "City",
+      "country": "Country",
+      "email": "Email",
+      "phone": "Phone number"
+    }, 
+    "Edit": {
+      "modify": "Modify",
+      "reset": "Reset"
     }
   },
   "Role": {
