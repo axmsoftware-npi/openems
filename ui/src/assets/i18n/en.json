@@ -532,7 +532,9 @@
       "czech": "Czech Republic",
       "sweden": "Sweden",
       "netherlands": "Netherlands",
-      "switzerland": "Switzerland"
+      "switzerland": "Switzerland",
+      "usa": "United States of America",
+      "bulgaria": "Bulgaria"
     },
     "yes": "Yes",
     "no": "No",
@@ -584,8 +586,16 @@
     "loggedInAs": "Logged in as '{{ value }}'"
   },
   "Register": {
+    "title": "Sign Up [TODO: FIX SLOW LOADING PROBLEM]",
+    "button": "Confirm [TODO: GREY UNTIL ALL FIELDS FILLED]",
+    "success": "Success!",
+    "segment": {
+      "user": "User Registration",
+      "installer": "Installer Registration"
+    },
     "Form": {
       "contactDetails": "Contact Details",
+      "companyName": "Company Name",
       "firstname": "First name",
       "lastname" : "Last name",
       "street": "Street address",
@@ -593,11 +603,28 @@
       "city": "City",
       "country": "Country",
       "email": "Email",
-      "phone": "Phone number"
+      "confirmEmail": "Confirm Email",
+      "phone": "Phone number",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "acceptAgb": "I have read and agree to the Terms of Service* [TODO: LINK TERMS OF SERVICE HERE]",
+      "subscribeNewsletter": "Subscribe to the Newsletter [TODO: EDIT OR REMOVE]",
+      "isElectrician": "I am an electrician [TODO: FIX WORDING]",
+      "user": {
+        "acceptPrivacyPolicy": "I have read and agree to the privacy policy* [TODO: LINK USER PRIVACY POLICY HERE]"
+      },
+      "installer": {
+        "acceptPrivacyPolicy": "I have read and agree to the privacy policy* [TODO: LINK INSTALLER PRIVACY POLICY HERE]"
+      }
     }, 
     "Edit": {
       "modify": "Modify",
       "reset": "Reset"
+    },
+    "errors": {
+      "requiredFields": "Please fill in all required fields (marked with *) [TODO: MAKE FIELDS TURN RED]",
+      "passwordNotEqual": "Passwords do not match",
+      "emailNotEqual": "Emails do not match"
     }
   },
   "Role": {
