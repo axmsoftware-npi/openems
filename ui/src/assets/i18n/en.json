@@ -7,7 +7,8 @@
     "language": "Select language:",
     "openEMS": "More about OpenEMS",
     "patchnotes": "Changes in the monitoring for this build",
-    "contact": "Contact"
+    "contact": "Contact",
+    "debugMode": "Debug-Mode"
   },
   "Edge": {
     "Index": {
@@ -456,7 +457,7 @@
     "cumulative": "Cumulative Values",
     "currentName": "current name",
     "currentValue": "current value",
-    "dateFormat": "yyyy-MM-dd",
+    "dateFormat": "MM-dd-yyyy",
     "digitalInputs": "Digital Inputs",
     "numberOfComponents": "Number of Components",
     "directConsumption": "Direct consumption",
@@ -571,6 +572,7 @@
     "edgeSettings": "Settings",
     "generalSettings": "General Settings",
     "index": "Index",
+    "login": "Login",
     "logout": "Sign Out",
     "menu": "Menu",
     "name": "Name",

@@ -6,7 +6,8 @@
     "faq": "Häufig gestellte Fragen (FAQ)",
     "language": "Sprache wählen:",
     "openEMS": "Mehr zu OpenEMS",
-    "patchnotes": "Änderungen im Monitoring zu diesem Build"
+    "patchnotes": "Änderungen im Monitoring zu diesem Build",
+    "debugMode": "Debug-Mode"
   },
   "Edge": {
     "Index": {
@@ -568,6 +569,7 @@
     "generalSettings": "Allgemeine Einstellungen",
     "index": "Übersicht",
     "logout": "Abmelden",
+    "login": "Login",
     "menu": "Menü",
     "name": "Name",
     "overview": "Alle Systeme",

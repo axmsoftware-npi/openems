@@ -34,7 +34,7 @@ export class Language {
 
     public static readonly DE: Language = new Language("German", "de", "de", de, localDE);
     public static readonly EN: Language = new Language("English", "en", "en", en, localEN);
-    public static readonly CZ: Language = new Language("Czech", "cz", "cs", cz, localCS /* NOTE: there is no locale in @angular/common for Czech */);
+    public static readonly CZ: Language = new Language("Czech", "cz", "cs", cz, localCS);
     public static readonly NL: Language = new Language("Dutch", "nl", "nl", nl, localNL);
     public static readonly ES: Language = new Language("Spanish", "es", "es", es, localES);
     public static readonly FR: Language = new Language("French", "fr", "fr", fr, localFR);
