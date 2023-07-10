@@ -158,7 +158,7 @@ export class Websocket implements WebsocketInterface {
       this.sendRequest(request).then(r => {
         let authenticateResponse = (r as AuthenticateResponse).result;
 
-        let language = Language.getByKey(Language.getBrowserLang());
+        let language = Language.getByKey(localStorage.LANGUAGE || Language.getBrowserLang());
         localStorage.LANGUAGE = language.key;
         this.service.setLang(language);
         this.status = 'online';
