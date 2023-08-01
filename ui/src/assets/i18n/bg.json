@@ -585,17 +585,41 @@
     "loggedInAs": "Влязъл като '{{ value }}'"
   },
   "Register": {
+    "title": "Create account",
+    "segment": {
+      "user": "User",
+      "installer": "Installer"
+    },
     "Form": {
+      "user": {
+        "acceptPrivacyPolicy": ""
+      },
+      "installer": {
+        "acceptPrivacyPolicy": ""
+      },
       "contactDetails": "Данни за контакт",
+      "companyName": "Company name",
       "firstname": "Първо име",
       "lastname": "Фамилия",
       "street": "Уличен адрес",
       "zip": "Пощенски код",
       "city": "Град",
       "country": "Държава",
+      "phone": "Телефонен номер",
       "email": "Имейл",
-      "phone": "Телефонен номер"
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "company": "Company",
+      "confirmEmail": "confirm E-Mail"
     },
+    "button": "Create",
+    "errors": {
+      "requiredFields": "Please fill in all fields",
+      "passwordNotEqual": "Passwords are not equal",
+      "emailNotEqual": "E-Mails are not equal"
+    },
+    "success": "Registration successful",
+    "createUser": "Create installer account",
     "Edit": {
       "modify": "Въведи",
       "reset": "Изтрий"
