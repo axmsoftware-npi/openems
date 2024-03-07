@@ -53,7 +53,7 @@
     "soc": "Laadstatus",
     "state": "Staat",
     "storageSystem": "Batterij",
-    "systemState": "Systeemstatus",
+    "SYSTEM_STATE": "Systeemstatus",
     "TOTAL": "totale verbruik",
     "totalState": "Algemene staat",
     "warning": "Waarschuwing",
@@ -103,9 +103,9 @@
     "connectionSuccessful": "Succesvol verbonden met {{ value }}.",
     "deviceOffline": "Het apparaat is niet aangesloten!",
     "isOffline": "OpenEMS is offline!",
-    "loggedInAs": "Geregistreerd als:",
+    "LOGGED_IN_AS": "Geregistreerd als",
     "toEnergymonitor": "Naar Energiemonitor...",
-    "type": "Type:"
+    "TYPE": "Type"
   },
   "Login": {
     "title": "Login",
@@ -114,6 +114,38 @@
     "passwordReset": "Wachtwoord opnieuw instellen",
     "authenticationFailed": "Authenticatie mislukt",
     "user": "Gebruiker"
+  },
+  "Register": {
+    "segment": {
+      "user": "Gebruiker",
+      "installer": "Installateur"
+    },
+    "Form": {
+      "user": {
+        "acceptPrivacyPolicy": ""
+      },
+      "installer": {
+        "acceptPrivacyPolicy": ""
+      },
+      "contactDetails": "Contactgegevens",
+      "companyName": "Bedrijfsnaam",
+      "firstname": "Voornaam",
+      "lastname": "Achternaam",
+      "street": "Straat | huisnummer",
+      "zip": "Postcode",
+      "city": "Stad",
+      "country": "Land",
+      "phone": "Telefoonnummer",
+      "email": "E-Mail - adres",
+      "password": "Wachtwoord",
+      "confirmPassword": "Bevestig wachtwoord"
+    },
+    "button": "Maken",
+    "errors": {
+      "requiredFields": "Gelieve alle velden in te vullen"
+    },
+    "passwordNotEqual": "Wachtwoorden zijn niet gelijk",
+    "success": "Registratie succesvol"
   },
   "Edge": {
     "Index": {
@@ -330,17 +362,6 @@
           "normalOperationShort": "",
           "switchOnComShort": "",
           "switchOnRecShort": ""
-        },
-        "TimeOfUseTariff": {
-          "currentTariff": "Huidige prijs",
-          "delayedDischarge": "Vertraagd ontslag",
-          "STORAGE_DISCHARGE": "Opslag ontlading",
-          "State": {
-            "notStarted": "De regelaar is nog niet gestart",
-            "delayed": "Vertraagd",
-            "allowsDischarge": "Vrijgegeven",
-            "standby": "Standby"
-          }
         }
       }
     },

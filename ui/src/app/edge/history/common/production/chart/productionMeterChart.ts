@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { AbstractHistoryChart } from 'src/app/shared/genericComponents/chart/abstracthistorychart';
 import { QueryHistoricTimeseriesEnergyResponse } from 'src/app/shared/jsonrpc/response/queryHistoricTimeseriesEnergyResponse';
-import { HistoryUtils } from 'src/app/shared/service/utils';
+import { ChartAxis, HistoryUtils, YAxisTitle } from 'src/app/shared/service/utils';
+
 import { ChannelAddress } from '../../../../../shared/shared';
 
 /** Will be used in the Future again */
 @Component({
   selector: 'productionMeterchart',
-  templateUrl: '../../../../../shared/genericComponents/chart/abstracthistorychart.html'
+  templateUrl: '../../../../../shared/genericComponents/chart/abstracthistorychart.html',
 })
 export class ProductionMeterChartComponent extends AbstractHistoryChart {
 
@@ -16,8 +17,8 @@ export class ProductionMeterChartComponent extends AbstractHistoryChart {
       name: 'ActivePower',
       powerChannel: ChannelAddress.fromString(this.component.id + '/ActivePower'),
       energyChannel: ChannelAddress.fromString(this.component.id + '/ActiveProductionEnergy'),
-      converter: (data) => data != null ? data : null
-    }
+      converter: (data) => data != null ? data : null,
+    },
     ];
 
     // Phase 1 to 3
@@ -25,7 +26,7 @@ export class ProductionMeterChartComponent extends AbstractHistoryChart {
       channels.push({
         name: 'ActivePowerL' + i,
         powerChannel: ChannelAddress.fromString(this.component.id + '/ActivePowerL' + i),
-        energyChannel: ChannelAddress.fromString(this.component.id + '/ActiveProductionEnergyL' + i)
+        energyChannel: ChannelAddress.fromString(this.component.id + '/ActiveProductionEnergyL' + i),
       });
     }
     return {
@@ -40,7 +41,7 @@ export class ProductionMeterChartComponent extends AbstractHistoryChart {
           converter: () => {
             return data['ActivePower'];
           },
-          color: 'rgb(0,152,204)'
+          color: 'rgb(0,152,204)',
         });
         if (this.showPhases) {
 
@@ -51,16 +52,20 @@ export class ProductionMeterChartComponent extends AbstractHistoryChart {
               converter: () => {
                 return data['ActivePowerL' + i] ?? null;
               },
-              color: this.phaseColors[i - 1]
+              color: AbstractHistoryChart.phaseColors[i - 1],
             });
           }
         }
         return datasets;
       },
       tooltip: {
-        formatNumber: '1.1-2'
+        formatNumber: '1.1-2',
       },
-      unit: HistoryUtils.YAxisTitle.ENERGY
+      yAxes: [{
+        unit: YAxisTitle.ENERGY,
+        position: 'left',
+        yAxisId: ChartAxis.LEFT,
+      }],
     };
   }
 }

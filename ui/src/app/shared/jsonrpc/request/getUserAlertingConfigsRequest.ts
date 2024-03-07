@@ -9,7 +9,7 @@ import { JsonrpcRequest } from "src/app/shared/jsonrpc/base";
  *   "id": "UUID",
  *   "method": "getUserAlertingConfigs",
  *   "params": {
- *      "edgeId": "string",
+ *      "edgeId": "string"
  *   }
  * }
  * </pre>
@@ -19,9 +19,9 @@ export class GetUserAlertingConfigsRequest extends JsonrpcRequest {
     private static METHOD: string = "getUserAlertingConfigs";
 
     public constructor(
-        public readonly params: {
+        public override readonly params: {
             edgeId: string
-        }
+        },
     ) {
         super(GetUserAlertingConfigsRequest.METHOD, params);
     }

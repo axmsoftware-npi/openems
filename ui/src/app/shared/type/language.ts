@@ -46,6 +46,7 @@ export class Language {
 
     public static getByKey(key: string): Language | null {
         for (let language of Language.ALL) {
+
             if (language.key == key) {
                 return language;
             }
@@ -56,7 +57,9 @@ export class Language {
     public static getByBrowserLang(browserLang: string): Language | null {
         switch (browserLang) {
             case "de": return Language.DE;
-            case "en": return Language.EN;
+            case "en":
+            case "en-US":
+                return Language.EN;
             case "es": return Language.ES;
             case "nl": return Language.NL;
             case "cz": return Language.CZ;
@@ -82,7 +85,7 @@ export class Language {
         public readonly key: string,
         public readonly i18nLocaleKey: string,
         public readonly json: any,
-        public readonly locale: any
+        public readonly locale: any,
     ) {
     }
 }

@@ -3,13 +3,14 @@ import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DefaultTypes } from 'src/app/shared/service/defaulttypes';
+
 import { ChannelAddress, Edge, EdgeConfig, Service } from '../../../shared/shared';
 import { AbstractHistoryChart } from '../abstracthistorychart';
-import { Data, TooltipItem } from './../shared';
+import * as Chart from 'chart.js';
 
 @Component({
     selector: 'gridChart',
-    templateUrl: '../abstracthistorychart.html'
+    templateUrl: '../abstracthistorychart.html',
 })
 export class GridChartComponent extends AbstractHistoryChart implements OnInit, OnChanges, OnDestroy {
 
@@ -21,9 +22,9 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
     };
 
     constructor(
-        protected service: Service,
-        protected translate: TranslateService,
-        private route: ActivatedRoute
+        protected override service: Service,
+        protected override translate: TranslateService,
+        private route: ActivatedRoute,
     ) {
         super("grid-chart", service, translate);
     }
@@ -69,11 +70,11 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
                 datasets.push({
                     label: this.translate.instant('General.grid'),
                     data: gridData,
-                    hidden: false
+                    hidden: false,
                 });
                 this.colors.push({
                     backgroundColor: 'rgba(0,0,0,0.05)',
-                    borderColor: 'rgba(0,0,0,1)'
+                    borderColor: 'rgba(0,0,0,1)',
                 });
             }
 
@@ -94,7 +95,7 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
                     datasets.push({
                         label: this.translate.instant('General.phase') + ' ' + 'L1',
                         data: gridData,
-                        hidden: false
+                        hidden: false,
                     });
                     this.colors.push(this.phase1Color);
                 }
@@ -114,7 +115,7 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
                     datasets.push({
                         label: this.translate.instant('General.phase') + ' ' + 'L2',
                         data: gridData,
-                        hidden: false
+                        hidden: false,
                     });
                     this.colors.push(this.phase2Color);
                 }
@@ -134,7 +135,7 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
                     datasets.push({
                         label: this.translate.instant('General.phase') + ' ' + 'L3',
                         data: gridData,
-                        hidden: false
+                        hidden: false,
                     });
                     this.colors.push(this.phase3Color);
                 }
@@ -156,7 +157,7 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
                 new ChannelAddress('_sum', 'GridActivePower'),
                 new ChannelAddress('_sum', 'GridActivePowerL1'),
                 new ChannelAddress('_sum', 'GridActivePowerL2'),
-                new ChannelAddress('_sum', 'GridActivePowerL3')
+                new ChannelAddress('_sum', 'GridActivePowerL3'),
             ];
             resolve(result);
         });
@@ -165,10 +166,9 @@ export class GridChartComponent extends AbstractHistoryChart implements OnInit, 
     protected setLabel() {
         let translate = this.translate; // enables access to TranslateService
         let options = this.createDefaultChartOptions();
-        options.scales.yAxes[0].scaleLabel.labelString = "kW";
-        options.tooltips.callbacks.label = function (tooltipItem: TooltipItem, data: Data) {
-            let label = data.datasets[tooltipItem.datasetIndex].label;
-            let value = tooltipItem.yLabel;
+        options.plugins.tooltip.callbacks.label = function (tooltipItem: Chart.TooltipItem<any>) {
+            let label = tooltipItem.dataset.label;
+            let value = tooltipItem.dataset.data[tooltipItem.dataIndex];
             // 0.005 to prevent showing Charge or Discharge if value is e.g. 0.00232138
             if (value < -0.005) {
                 if (label.includes(translate.instant('General.phase'))) {

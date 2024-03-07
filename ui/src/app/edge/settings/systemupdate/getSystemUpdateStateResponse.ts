@@ -15,9 +15,9 @@ export interface SystemUpdateState {
 
 /**
  * JSON-RPC Response to "getSystemUpdateState" Request.
- * 
+ *
  * <p>
- * 
+ *
  * <pre>
  * {
  *   "jsonrpc": "2.0",
@@ -48,8 +48,8 @@ export interface SystemUpdateState {
 export class GetSystemUpdateStateResponse extends JsonrpcResponseSuccess {
 
     public constructor(
-        public readonly id: string,
-        public readonly result: SystemUpdateState
+        public override readonly id: string,
+        public override readonly result: SystemUpdateState,
     ) {
         super(id, result);
     }

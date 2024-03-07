@@ -11,7 +11,7 @@ interface MyCategorizedFactories extends CategorizedFactories {
 
 @Component({
   selector: IndexComponent.SELECTOR,
-  templateUrl: './index.component.html'
+  templateUrl: './index.component.html',
 })
 export class IndexComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: Service,
-    private translate: TranslateService
+    private translate: TranslateService,
   ) {
   }
 
@@ -42,7 +42,7 @@ export class IndexComponent implements OnInit {
 
   updateFilter(completeFilter: string) {
     // take each space-separated string as an individual and-combined filter
-    let filters = completeFilter.split(' ');
+    let filters = completeFilter.toLowerCase().split(' ');
     let countFilteredEntries = 0;
     for (let entry of this.list) {
       entry.filteredFactories = entry.factories.filter(entry =>
@@ -50,8 +50,8 @@ export class IndexComponent implements OnInit {
         Utils.matchAll(filters, [
           entry.id.toLowerCase(),
           entry.name.toLowerCase(),
-          entry.description.toLowerCase()
-        ])
+          entry.description.toLowerCase(),
+        ]),
       );
       countFilteredEntries += entry.filteredFactories.length;
     }

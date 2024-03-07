@@ -1,21 +1,21 @@
-
-import { formatNumber } from '@angular/common';
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import * as Chart from 'chart.js';
 import { AbstractHistoryChart } from 'src/app/edge/history/abstracthistorychart';
-import { ChartOptions, DEFAULT_TIME_CHART_OPTIONS, TooltipItem, Unit } from 'src/app/edge/history/shared';
+import { ChronoUnit, DEFAULT_TIME_CHART_OPTIONS } from 'src/app/edge/history/shared';
 import { DefaultTypes } from 'src/app/shared/service/defaulttypes';
+import { ChartAxis, YAxisTitle } from 'src/app/shared/service/utils';
 import { ChannelAddress, Edge, EdgeConfig, Service, Utils } from 'src/app/shared/shared';
 
 @Component({
     selector: 'predictionChart',
-    templateUrl: '../../../../../history/abstracthistorychart.html'
+    templateUrl: '../../../../../history/abstracthistorychart.html',
 })
 export class PredictionChartComponent extends AbstractHistoryChart implements OnInit, OnChanges, OnDestroy {
 
     @Input() protected refresh: boolean;
-    @Input() protected edge: Edge;
+    @Input() protected override edge: Edge;
     @Input() public component: EdgeConfig.Component;
     @Input() public targetEpochSeconds: number;
     @Input() public chargeStartEpochSeconds: number;
@@ -27,9 +27,9 @@ export class PredictionChartComponent extends AbstractHistoryChart implements On
     };
 
     constructor(
-        protected service: Service,
-        protected translate: TranslateService,
-        private route: ActivatedRoute
+        protected override service: Service,
+        protected override translate: TranslateService,
+        private route: ActivatedRoute,
     ) {
         super("prediction-chart", service, translate);
     }
@@ -50,11 +50,11 @@ export class PredictionChartComponent extends AbstractHistoryChart implements On
         this.loading = true;
         this.colors = [];
 
-        this.queryHistoricTimeseriesData(PredictionChartComponent.DEFAULT_PERIOD.from, PredictionChartComponent.DEFAULT_PERIOD.to, { unit: Unit.MINUTES, value: 5 }).then(response => {
+        this.queryHistoricTimeseriesData(PredictionChartComponent.DEFAULT_PERIOD.from, PredictionChartComponent.DEFAULT_PERIOD.to, { unit: ChronoUnit.Type.MINUTES, value: 5 }).then(async response => {
             let result = response.result;
             let datasets = [];
 
-            // Get the 5 min index of the current time 
+            // Get the 5 min index of the current time
             let hours = new Date().getHours();
             let minutes = new Date().getMinutes();
             let currIndex = Math.trunc((hours * 60 + minutes) / 5);
@@ -129,7 +129,7 @@ export class PredictionChartComponent extends AbstractHistoryChart implements On
                         // Calculate how much percentage is needed in every time step (5 min)
                         dataSteps = remainingCapacity / remainingSteps;
 
-                        // Set the data for the datasets 
+                        // Set the data for the datasets
                         let predictedSoc = startSoc - dataSteps;
                         for (let i = currIndex; i <= targetIndex; i++) {
                             // Predicted SoC increases only after charge start time, when channel is not zero (e.g. for older versions).
@@ -143,7 +143,7 @@ export class PredictionChartComponent extends AbstractHistoryChart implements On
                     }
                 }
 
-                // Add one buffer hour at the end to get more clarity in the chart 
+                // Add one buffer hour at the end to get more clarity in the chart
                 let chartEndIndex = targetIndex + 12;
 
                 // Remove unimportant values that are after the end index
@@ -173,42 +173,54 @@ export class PredictionChartComponent extends AbstractHistoryChart implements On
                     label: this.translate.instant('General.soc'),
                     data: socData,
                     hidden: false,
-                    yAxisID: 'yAxis2',
-                    position: 'right'
+                    yAxisID: ChartAxis.RIGHT,
                 }, {
                     label: this.translate.instant('Edge.Index.Widgets.GridOptimizedCharge.expectedSoc'),
                     data: predictedSocData,
                     hidden: false,
-                    yAxisID: 'yAxis2',
-                    position: 'right'
+                    yAxisID: ChartAxis.RIGHT,
                 });
 
-                // Push the depending colors 
+                // Push the depending colors
                 this.colors.push({
                     backgroundColor: 'rgba(189, 195, 199,0.05)',
-                    borderColor: 'rgba(189, 195, 199,1)'
+                    borderColor: 'rgba(189, 195, 199,1)',
                 }, {
                     backgroundColor: 'rgba(0,223,0,0)',
-                    borderColor: 'rgba(0,223,0,1)'
+                    borderColor: 'rgba(0,223,0,1)',
                 });
             }
 
             this.datasets = datasets;
             this.loading = false;
             this.service.stopSpinner(this.spinnerId);
+            this.unit = YAxisTitle.PERCENTAGE;
+            this.formatNumber = '1.0-0';
+            await this.setOptions(this.options);
+            this.applyControllerSpecificOptions();
 
         }).catch(reason => {
-            console.error(reason); // TODO error message 
+            console.error(reason); // TODO error message
             this.initializeChart();
             return;
         });
+    }
+
+    private applyControllerSpecificOptions() {
+        this.options.scales[ChartAxis.LEFT]['position'] = 'right';
+        this.options.scales.x.ticks.callback = function (value, index, values) {
+            var date = new Date(value);
+
+            // Display the label only if the minutes are zero (full hour)
+            return date.getMinutes() === 0 ? date.getHours() + ':00' : '';
+        };
     }
 
     protected getChannelAddresses(): Promise<ChannelAddress[]> {
 
         return new Promise((resolve) => {
             let result: ChannelAddress[] = [
-                new ChannelAddress('_sum', 'EssSoc')
+                new ChannelAddress('_sum', 'EssSoc'),
             ];
             if (this.component != null && this.component.id) {
                 result.push(new ChannelAddress(this.component.id, 'DelayChargeMaximumChargeLimit'));
@@ -222,58 +234,8 @@ export class PredictionChartComponent extends AbstractHistoryChart implements On
     }
 
     protected setLabel() {
-        let translate = this.translate;
-        let options = <ChartOptions>Utils.deepCopy(DEFAULT_TIME_CHART_OPTIONS);
-
-        // Remove left y axis for now
-        options.scales.yAxes.shift();
-
-        // adds second y-axis to chart
-        options.scales.yAxes
-            .push({
-                id: 'yAxis2',
-                position: 'right',
-                scaleLabel: {
-                    display: true,
-                    labelString: "%",
-                    padding: -2,
-                    fontSize: 11
-                },
-                gridLines: {
-                    display: true
-                },
-                ticks: {
-                    beginAtZero: true,
-                    max: 100,
-                    padding: -5,
-                    stepSize: 20
-                }
-            });
-
-        options.layout = {
-            padding: {
-                left: 2,
-                right: 2,
-                top: 0,
-                bottom: 0
-            }
-        };
-        //x-axis
-        options.scales.xAxes[0].time.unit = "hour";
-
-        //y-axis
-        options.tooltips.callbacks.label = function (tooltipItem: TooltipItem, data: Data) {
-            let label = data.datasets[tooltipItem.datasetIndex].label;
-            let value = tooltipItem.yLabel;
-            if (label == translate.instant('General.soc') || label == translate.instant('Edge.Index.Widgets.GridOptimizedCharge.expectedSoc')) {
-                return label + ": " + formatNumber(value, 'de', '1.0-0') + " %";
-            } else {
-                return label + ": " + formatNumber(value, 'de', '1.0-2') + " kW";
-            }
-        };
-        this.options = options;
+        this.options = <Chart.ChartOptions>Utils.deepCopy(DEFAULT_TIME_CHART_OPTIONS);
     }
-
 }
 
 export type ChannelChartDescription = {

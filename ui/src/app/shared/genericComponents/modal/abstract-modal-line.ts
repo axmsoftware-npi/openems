@@ -7,6 +7,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ChannelAddress, CurrentData, Edge, EdgeConfig, Service, Utils, Websocket } from "src/app/shared/shared";
 import { v4 as uuidv4 } from 'uuid';
+
 import { Role } from "../../type/role";
 import { Converter } from "../shared/converter";
 import { Filter } from "../shared/filter";
@@ -25,7 +26,7 @@ export abstract class AbstractModalLine implements OnInit, OnDestroy, OnChanges 
 
     /**
     * Use `converter` to convert/map a CurrentData value to another value, e.g. an Enum number to a text.
-    * 
+    *
     * @param value the current data value
     * @returns converter function
     */
@@ -33,7 +34,7 @@ export abstract class AbstractModalLine implements OnInit, OnDestroy, OnChanges 
 
     /**
     * Use `filter` to remove a line depending on a value.
-    * 
+    *
     * @param value the current data value
     * @returns converter function
     */
@@ -66,14 +67,14 @@ export abstract class AbstractModalLine implements OnInit, OnDestroy, OnChanges 
     /** Selector needed for Subscribe (Identifier) */
     private selector: string = uuidv4();
 
-    /** 
+    /**
      * displayValue is the displayed @Input value in html
      */
     public displayValue: string = null;
     public displayName: string = null;
 
     /** Checks if any value of this line can be seen => hides line if false
-     * 
+     *
      * @deprecated can be remove in future when live-view is refactored with formlyfield
      */
     protected isAllowedToBeSeen: boolean = true;
@@ -92,7 +93,7 @@ export abstract class AbstractModalLine implements OnInit, OnDestroy, OnChanges 
         @Inject(ModalController) protected modalCtrl: ModalController,
         @Inject(TranslateService) protected translate: TranslateService,
         @Inject(FormBuilder) public formBuilder: FormBuilder,
-        private ref: ChangeDetectorRef
+        private ref: ChangeDetectorRef,
     ) {
         ref.detach();
         setInterval(() => {
@@ -195,7 +196,7 @@ export abstract class AbstractModalLine implements OnInit, OnDestroy, OnChanges 
     }
     /**
      * Called on every new data.
-     * 
+     *
      * @param currentData new data for the subscribed Channel-Addresses
      */
     protected onCurrentData(currentData: CurrentData) {
